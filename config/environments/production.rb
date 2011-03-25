@@ -47,5 +47,5 @@ Csp::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  ENV["REDISTOGO_URL"] = 'redis://127.0.0.1:6379' 
+  ENV["REDISTOGO_URL"] = 'redis://redistogo:c54c321b018127cbf83f48c496ae1c65@bass.redistogo.com:9044' 
 end
