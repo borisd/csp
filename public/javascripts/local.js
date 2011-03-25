@@ -1,5 +1,6 @@
 var key = null;
 var updateRate = 3000;
+var enabled = true;
 
 function addLine(text, type) {
   var $elem = $('<li/>').addClass(type).html(text);
@@ -20,6 +21,11 @@ function removeLine(id) {
 
 function getViolations() {
   function reschedule(time) {
+    if (!enabled) {
+      $('#update').html('disabled');
+      return;
+    }
+
     updateRate = time;
     setTimeout(getViolations, updateRate);
     $('#update').html('waiting..');
