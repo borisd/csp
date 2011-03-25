@@ -27,15 +27,12 @@ function getViolations() {
 
   function success(data) {
     messages = data.messages;
-
     $.each(messages, function(key, val) { Bad(val); });
-
     reschedule(data.update_rate);
   }
 
   function error(jqXHR, textStatus, errorThrown) {
-    console.log('Error accessing server...');
-    Bad(textStatus);
+    Bad("Error accessing server for updates...");
     reschedule(updateRate * 2);
   }
 
