@@ -1,0 +1,12 @@
+%h1 
+  Hello !
+
+%ul#status{ :data_key => @session_key }
+  %li#no_js
+    My friend, it looks like you ain't got no JavaScript enabled..
+
+%a#sample{ :href => '' }
+  Try it !
+
+= javascript_include_tag "local.js"
+= javascript_include_tag "http://example.com:3000/remote.js"

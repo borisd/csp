@@ -1,0 +1,1 @@
+Bad('Remote script loaded');
