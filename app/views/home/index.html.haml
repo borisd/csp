@@ -1,12 +1,42 @@
-%h1 
-  Hello !
+.content_item.nice_shadow
+  %p
+    %b
+      Content Security Policy (CSP)
+    is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware.
 
-%ul#status{ :data_key => @session_key }
-  %li#no_js
-    My friend, it looks like you ain't got no JavaScript enabled..
+  %p
+    Currently supported only by the new
+    %a{ :href => 'http://www.mozilla.com', :target => '_blank' }
+      FireFox 4
+    browser
 
-%a#sample{ :href => '' }
-  Try it !
+  %p
+    This page uses the reporting feature of CSP, to check if any scripts were executed by your browser that were not part of this site.
+    Such scripts might be parts of local addons or injections by your Internet Services Providers or your workplace.
 
-= javascript_include_tag "local.js"
-= javascript_include_tag "http://example.com:3000/remote.js"
+  %p
+    Due to the nature of CSP reporting, we are currently unable to report on Javascript injections to the page itself, only execution of external scripts. (But working on it !)
+  %p
+    %a{ :href => 'https://developer.mozilla.org/en/Security/CSP', :target => '_blank '}
+      Read more about CSP
+
+
+.content_item.nice_shadow
+  %h2
+    Report status
+  %h3
+    (Auto updated periodically: 
+    %span#update
+      preparing
+    )
+  %hr
+
+  %ul#status{ :data_key => @session_key }
+    %li#no_js
+      My friend, it looks like you ain't got no JavaScript enabled..
+
+  %a#sample{ :href => '' }
+    Execute test violation
+
+  = javascript_include_tag "local.js"
+  = javascript_include_tag "http://csp.dinkevich.com/example.js"

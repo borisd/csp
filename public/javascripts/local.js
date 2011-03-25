@@ -19,24 +19,27 @@ function removeLine(id) {
 }
 
 function getViolations() {
+  function reschedule(time) {
+    updateRate = time;
+    setTimeout(getViolations, updateRate);
+    $('#update').html('waiting..');
+  }
+
   function success(data) {
     messages = data.messages;
 
     $.each(messages, function(key, val) { Bad(val); });
 
-    updateRate = data.update_rate;
-    setTimeout(getViolations, updateRate);
+    reschedule(data.update_rate);
   }
 
   function error(jqXHR, textStatus, errorThrown) {
-    console.log('Error !');
+    console.log('Error accessing server...');
     Bad(textStatus);
-
-    updateRate = updateRate * 2;
-    setTimeout(getViolations, updateRate);
+    reschedule(updateRate * 2);
   }
 
-  console.log('Starting ajax..');
+  $('#update').html('updating..');
 
   $.ajax({
     url: '/violations',

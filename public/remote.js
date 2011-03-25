@@ -1,1 +1,0 @@
-Bad('Remote script loaded');

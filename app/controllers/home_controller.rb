@@ -16,7 +16,7 @@ class HomeController < ApplicationController
     violated = report["violated-directive"]
     key      = violated.include?('session.key') ? violated.split(' ')[-1].split('.')[0] : nil
 
-    message = "Got violation: #{report["blocked-uri"]} - (#{violated})"
+    message = "Got violation: #{report["blocked-uri"]}"
 
     REDIS.lpush key, message if key
 
@@ -27,6 +27,6 @@ class HomeController < ApplicationController
     key = params[:key] or return
     data = REDIS.lrange key, 0, -1
     REDIS.ltrim key, 1, 0 # Clear the list
-    render :json => { :update_rate => 5000, :messages => data }.to_json
+    render :json => { :update_rate => 1000, :messages => data }.to_json
   end
 end

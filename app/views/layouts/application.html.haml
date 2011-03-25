@@ -3,9 +3,26 @@
     %title
       Test
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    = stylesheet_link_tag "main" 
     = javascript_include_tag "jquery.min.js"
 
   %body
     #container
-      = yield
+      #content
+        #header.nice_shadow
+          %h1
+            Test your browser for unwanted scripts
+          %p
+            %em
+              Simple detection of unexpected JavaScript
+        = yield
+      #footer
+        %ul
+          %li
+            Built by
+            =link_to "Boris Dinkevich", "http://www.dinkevich.com"
+          %li
+            =link_to "Blog", "http://blog.itlater.com"
+
+
 
