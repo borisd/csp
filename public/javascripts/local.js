@@ -33,7 +33,13 @@ function getViolations() {
 
   function success(data) {
     messages = data.messages;
-    $.each(messages, function(key, val) { Bad(val); });
+    $.each(messages, function(key, val) { 
+      if (val.indexOf("OK ") == 0) {
+        Good(val.substring(4));
+      } else {
+        Bad(val); 
+      }
+    });
     reschedule(data.update_rate);
   }
 

@@ -15,8 +15,14 @@ class HomeController < ApplicationController
     report   = params["csp-report"]
     violated = report["violated-directive"]
     key      = violated.include?('session.key') ? violated.split(' ')[-1].split('.')[0] : nil
+    blocked  = report["blocked-uri"]
 
-    message = "Got violation: #{report["blocked-uri"]}"
+    if blocked =~ /dinkevich.com\/csp_test.js/
+      message = "OK CSP test successful. Waiting for possible violations"
+    else
+      message = "Unexpedted JavaScript: #{blocked}"
+    end
+
 
     REDIS.lpush key, message if key
 
