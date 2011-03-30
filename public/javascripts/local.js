@@ -28,7 +28,7 @@ function getViolations() {
 
     updateRate = time;
     setTimeout(getViolations, updateRate);
-    $('#update').html('waiting..');
+    $('#update').html('waiting ' + updateRate/1000 + ' secs..');
   }
 
   function success(data) {
@@ -60,14 +60,19 @@ function getViolations() {
   });
 }
 
+function runTests() {
+  $.getScript('http://google.com');
+}
+
 $(document).ready(function(){
   removeLine('no_js');
   Good('Local script is working (as it should)');
 
   key = $('#status').attr('data_key');
+  $.cookie('session_key', key);
 
   $('#sample').click(function() {
-    $.getScript('http://google.com');
+    runTests();
     return false;
   });
 

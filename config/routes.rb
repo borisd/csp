@@ -3,3 +3,5 @@ Csp::Application.routes.draw do
   get  'violations' => 'home#get_violations'
   post 'violations' => 'home#set_violations'
 end
+
+
