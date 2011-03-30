@@ -57,6 +57,6 @@ class HomeController < ApplicationController
     # Clear list
     REDIS.ltrim key, 1, 0
 
-    render :json => { :update_rate => 1000000, :messages => data }.to_json
+    render :json => { :update_rate => 1000, :messages => data }.to_json
   end
 end
